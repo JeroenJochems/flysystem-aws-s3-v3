@@ -418,7 +418,7 @@ class AwsS3V3Adapter implements FilesystemAdapter, PublicUrlGenerator, ChecksumP
     public function copy(string $source, string $destination, Config $config): void
     {
         try {
-            $visibility = $config->get(Config::OPTION_VISIBILITY);
+            $visibility = $config->get(Config::OPTION_VISIBILITY, 'private');
 
             if ($visibility === null && $config->get(Config::OPTION_RETAIN_VISIBILITY, true)) {
                 $visibility = $this->visibility($source)->visibility();
